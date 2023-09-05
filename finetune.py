@@ -110,7 +110,7 @@ def main(config):
     test_loader = DataLoader(test_dataset, batch_size=config.batch_size, shuffle=False, num_workers = config.num_workers)
 
     #set up model
-    model = GNN_graphpred(config.num_layer, config.emb_dim, num_tasks, JK = config.JK, drop_ratio = config.dropout_ratio, graph_pooling = config.graph_pooling, gnn_type = config.gnn_type)
+    model = GNN_graphpred(config.num_layer, config.emb_dim, num_tasks, JK = config.JK, drop_ratio = config.dropout_ratio, graph_pooling = config.graph_pooling, gnn_type = config.gnn_type).to(device)
     if not config.input_model_file == "None":
         print('Not from scratch')
         model.from_pretrained('model_gin/{}.pth'.format(config.input_model_file))
